@@ -33,7 +33,6 @@ def load_words():
     return wordlist
 
 
-
 def choose_word(wordlist):
     """
     wordlist (list): list of words (strings)
@@ -41,6 +40,7 @@ def choose_word(wordlist):
     Returns a word from wordlist at random
     """
     return random.choice(wordlist)
+
 
 # end of helper code
 
@@ -64,7 +64,6 @@ def is_word_guessed(secret_word, letters_guessed):
     return b
 
 
-
 def get_guessed_word(secret_word, letters_guessed):
     '''
     secret_word: string, the word the user is guessing
@@ -72,21 +71,21 @@ def get_guessed_word(secret_word, letters_guessed):
     returns: string, comprised of letters, underscores (_), and spaces that represents
       which letters in secret_word have been guessed so far.
     '''
-    c = []
+    cross = []
     string = ""
-    for i in list(secret_word):
-        for j in letters_guessed:
-            if i == j:
-                c.append(list(secret_word)[i])
+    space = " _ "
+    for char in list(secret_word):
+        for chara in letters_guessed:
+            if char == chara:
+                cross.append(list(secret_word)[char])
                 break
-    for i in list(secret_word):
-        for j in c:
-            if i != j:
-                list(secret_word).pop(j, " _ ")
-    for i in list(secret_word):
-        string += list(secret_word)[i]
+    for char in list(secret_word):
+        for chara in cross:
+            if char != chara:
+                list(secret_word).insert(chara, space)
+    for char in list(secret_word):
+        string += list(secret_word)[char]
     return string
-
 
 
 def get_available_letters(letters_guessed):
@@ -95,16 +94,16 @@ def get_available_letters(letters_guessed):
     returns: string (of letters), comprised of letters that represents which letters have not
       yet been guessed.
     '''
-    string = ""
+    str = ""
     x = string.ascii_lowercase
-    for i in list(x):
-        for j in letters_guessed:
-            if i == j:
-                list(x).remove(i)
-    for i in list(x):
-        string += list(x)[i]
-    return string
-    
+    for char in list(x):
+        for chara in letters_guessed:
+            if char == chara:
+                list(x).remove(char)
+    for char in list(x):
+        str += list(x)[char]
+    return str
+
 
 def hangman(secret_word):
     '''
@@ -131,19 +130,17 @@ def hangman(secret_word):
     
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE AND DELETE "pass"
+    
     pass
-
 
 
 # When you've completed your hangman function, scroll down to the bottom
 # of the file and uncomment the first two lines to test
-#(hint: you might want to pick your own
+# (hint: you might want to pick your own
 # secret_word while you're doing your own testing)
 
 
 # -----------------------------------
-
 
 
 def match_with_gaps(my_word, other_word):
@@ -159,7 +156,6 @@ def match_with_gaps(my_word, other_word):
     pass
 
 
-
 def show_possible_matches(my_word):
     '''
     my_word: string with _ characters, current guess of secret word
@@ -172,7 +168,6 @@ def show_possible_matches(my_word):
     '''
     # FILL IN YOUR CODE HERE AND DELETE "pass"
     pass
-
 
 
 def hangman_with_hints(secret_word):
@@ -206,7 +201,6 @@ def hangman_with_hints(secret_word):
     pass
 
 
-
 # When you've completed your hangman_with_hint function, comment the two similar
 # lines above that were used to run the hangman function, and then uncomment
 # these two lines and run this file to test!
@@ -218,14 +212,14 @@ if __name__ == "__main__":
 
     # To test part 2, comment out the pass line above and
     # uncomment the following two lines.
-    
+
     secret_word = choose_word(wordlist)
     hangman(secret_word)
 
 ###############
-    
-    # To test part 3 re-comment out the above lines and 
-    # uncomment the following two lines. 
-    
-    #secret_word = choose_word(wordlist)
-    #hangman_with_hints(secret_word)
+
+# To test part 3 re-comment out the above lines and
+# uncomment the following two lines.
+
+# secret_word = choose_word(wordlist)
+# hangman_with_hints(secret_word)
